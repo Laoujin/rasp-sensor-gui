@@ -1,0 +1,31 @@
+import request from 'superagent';
+import { canUseDOM } from 'fbjs/lib/ExecutionEnvironment';
+
+function getUrl(path) {
+  return process.env.WEBSITE_HOSTNAME ?
+    `http://${process.env.WEBSITE_HOSTNAME}${path}` :
+    `http://localhost:49730${path}`;
+    // `http://127.0.0.1:${global.server.get('port')}${path}`;
+}
+
+const HttpClient = {
+  get: path => new Promise((resolve, reject) => {
+    request
+      .get(getUrl(path))
+      .accept('application/json')
+      .end((err, res) => {
+        if (err) {
+          if (err.status === 404) {
+            resolve(null);
+          } else {
+            reject(err);
+          }
+        } else {
+          resolve(res.body);
+        }
+      });
+  }),
+
+};
+
+export default HttpClient;

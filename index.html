@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Domotica</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="main.css">
+
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	<script src="bower_components/lodash/lodash.min.js" charset="utf-8"></script>
+	<script src="bower_components/moment/min/moment.min.js" charset="utf-8"></script>
+</head>
+<body>
+<div class="jumbotron">
+	<h2>Fun with Raspberry Pie</h2>
+</div>
+
+<div class="container" id="content">
+	<div class="row">
+		<div class="col-md-8">
+			<h3>Current temperature</h3>
+
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$.get('api.php', function(data) {
+		data = JSON.parse(data);
+		// _.each(data, function(d) {
+		// 	d.server = d.server.replace('www.', '').replace('tribalwars', 'tw');
+		// 	d.downloaddate = moment(d.downloaddate, 'YYYY-MM-DD HH:mm:ss');
+		// 	d.player = d.player || unknownPlayerOrTribe;
+		// 	d.tribe = d.tribe || unknownPlayerOrTribe;
+		// });
+	});
+</script>
+</body>
+</html>
