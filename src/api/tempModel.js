@@ -16,11 +16,7 @@ var state = {
   //   $('#messages').append($('<li>').text(msg));
   // });
 
-
 export default {
-  getState: function() {
-    return state;
-  },
   add: function(rawInput) {
     state.temp = {
       time: new Date(),
