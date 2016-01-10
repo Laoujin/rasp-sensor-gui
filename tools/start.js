@@ -19,7 +19,7 @@ export default task('start', async () => {
   browserSync({
     proxy: {
 
-      target: 'localhost:5000',
+      target: 'localhost:8181',
 
       middleware: [
         webpackDevMiddleware(bundler, {

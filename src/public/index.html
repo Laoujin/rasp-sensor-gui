@@ -9,13 +9,11 @@
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-  <link rel="stylesheet" href="main.css">
+  <!-- <link rel="stylesheet" href="main.css"> -->
 
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
   <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
-  <script src="bower_components/lodash/lodash.min.js" charset="utf-8"></script>
-  <script src="bower_components/moment/min/moment.min.js" charset="utf-8"></script>
   <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
 </head>
 <body>
@@ -23,7 +21,23 @@
 <div id="app" />
 <script src="/app.js"></script>
 
+<input type=text id="test" />
+<input type=button id="button" value="klik me" />
+<ul id="messages" />
+
 <script type="text/javascript">
+  var socket = io();
+  $('#button').click(function(){
+    console.log('message sent');
+    socket.emit('chat message', $('#test').val());
+    $('#test').val('');
+    return false;
+  });
+  socket.on('chat message', function(msg){
+    console.log('message received');
+    $('#messages').append($('<li>').text(msg));
+  });
+
   // $.get('api.php', function(data) {
   //   data = JSON.parse(data);
   //   // _.each(data, function(d) {

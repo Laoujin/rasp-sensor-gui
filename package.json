@@ -16,6 +16,7 @@
     "fbjs": "0.3.2",
     "front-matter": "1.0.0",
     "history": "1.12.5",
+    "http": "0.0.0",
     "immutable": "^3.7.5",
     "lodash": "^3.10.1",
     "mysql": "^2.10.0",
