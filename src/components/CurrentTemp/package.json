@@ -1,0 +1,6 @@
+{
+  "name": "CurrentTemp",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./CurrentTemp.js"
+}

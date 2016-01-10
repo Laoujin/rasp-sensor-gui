@@ -11,6 +11,12 @@ var state = {
   heater: true
 };
 
+  // global.socket.on('chat message', function(msg){
+  //   console.log('message received');
+  //   $('#messages').append($('<li>').text(msg));
+  // });
+
+
 export default {
   getState: function() {
     return state;
@@ -21,6 +27,7 @@ export default {
       temp: parseFloat(rawInput.temp, 10)
     };
     eventEmitter.emit('temp', state);
+    global.io.emit('temp', state.temp);
     if (state.temp.temp < conf.tempTreshold.min && !state.heater) {
       state.heater = true;
       eventEmitter.emit('heater', state);

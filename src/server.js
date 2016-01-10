@@ -20,14 +20,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api', api());
 
-var io = require('socket.io')(app.server);
-io.on('connection', function(socket){
-  console.log('use connected');
-  socket.on('chat message', function(msg){
-    console.log('sent', msg);
-    io.emit('chat message', msg);
-  });
-});
+global.io = require('socket.io')(app.server);
+// io.on('connection', function(socket) {
+//   console.log('user connected');
+//   socket.on('temp', function(msg) {
+//     console.log('got', msg);
+//     //io.emit('chat message', msg);
+//   });
+// });
 
 app.server.listen(app.get('port'), () => {
   /* eslint-disable no-console */

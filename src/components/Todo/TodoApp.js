@@ -5,7 +5,7 @@ import TodoHeader from './TodoHeader.js';
 import TodoList from './TodoList.js';
 import TodoFooter from './TodoFooter.js';
 
-import * as todosActionCreators from '../../actions/players.js';
+import * as todosActionCreators from '../../actions/actions';
 
 @connect((state) => {
   return {

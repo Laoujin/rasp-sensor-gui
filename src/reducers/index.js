@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 import { routerStateReducer as router } from 'redux-router';
 
-import { todos, filter } from './players.js';
+import { temp, heater } from './temp.js';
 
 const rootReducer = combineReducers({
-  todos,
-  filter,
+  temp,
+  heater,
   router
 });
 
