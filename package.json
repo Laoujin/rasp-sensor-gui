@@ -1,4 +1,7 @@
 {
+  "name": "Rasp-Backend",
+  "version": "0.2.2",
+  "description": "",
   "private": true,
   "engines": {
     "node": ">=4.1 <5",
@@ -14,6 +17,9 @@
     "front-matter": "1.0.0",
     "history": "1.12.5",
     "immutable": "^3.7.5",
+    "lodash": "^3.10.1",
+    "mysql": "^2.10.0",
+    "node-notifier": "^4.4.0",
     "normalize.css": "3.0.3",
     "react": "0.14.0",
     "react-dom": "0.14.0",
@@ -22,6 +28,7 @@
     "redux": "^3.0.4",
     "redux-router": "^1.0.0-beta4",
     "redux-thunk": "^1.0.0",
+    "resource-router-middleware": "^0.5.1",
     "source-map-support": "0.3.2",
     "superagent": "1.4.0"
   },
