@@ -4,7 +4,7 @@ import withContext from '../../decorators/withContext';
 import withStyles from '../../decorators/withStyles';
 import Header from '../Header';
 import Footer from '../Footer';
-import CurrentTemperature from '../CurrentTemp';
+import CurrentTemperature from '../Temperature/CurrentTemp.js';
 import actions from '../../actions/actions';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/actions';
@@ -19,7 +19,8 @@ import * as actionCreators from '../../actions/actions';
 @withStyles(styles)
 class App extends Component {
   static propTypes = {
-    temp: React.PropTypes.any
+    temp: PropTypes.any,
+    tempUpdate: PropTypes.func.isRequired,
   };
 
   componentDidMount() {

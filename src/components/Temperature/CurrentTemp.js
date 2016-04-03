@@ -1,9 +1,6 @@
 import React, { PropTypes, Component } from 'react';
-import styles from './CurrentTemp.css';
-import withStyles from '../../decorators/withStyles';
 
-@withStyles(styles)
-class CurrentTemp extends Component {
+export default class CurrentTemp extends Component {
   static propTypes = {
     temp: React.PropTypes.number,
   };
@@ -16,5 +13,3 @@ class CurrentTemp extends Component {
     );
   }
 }
-
-export default CurrentTemp;

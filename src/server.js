@@ -12,7 +12,7 @@ const app = global.app = express();
 app.server = http.createServer(app);
 
 app.use(bodyParser.json({
-  limit: '100kb'
+  limit: '100kb',
 }));
 
 app.set('port', (process.env.PORT || 8181));
