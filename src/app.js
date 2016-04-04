@@ -3,7 +3,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { ReduxRouter } from 'redux-router';
-import store from './core/store';
+import store from './core/store.js';
 
 global.socket = io();
 // global.socket.on('temp', function(msg){
