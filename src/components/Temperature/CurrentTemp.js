@@ -8,7 +8,7 @@ export default class CurrentTemp extends Component {
   render() {
     return (
       <div className="CurrentTemp">
-        {this.props.temp ? this.props.temp.toFixed(2) : '??'}
+        {this.props.temp ? this.props.temp.toFixed(2) + '°' : '??'}
       </div>
     );
   }

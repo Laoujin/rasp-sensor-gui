@@ -4,8 +4,6 @@ import withContext from '../../decorators/withContext';
 import withStyles from '../../decorators/withStyles';
 import Header from '../Header';
 import Footer from '../Footer';
-import CurrentTemperature from '../Temperature/CurrentTemp.js';
-import actions from '../../actions/actions';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/actions';
 
@@ -33,8 +31,8 @@ class App extends Component {
     //console.log('props', this.props);
     return (
       <div>
-        <Header />
-        <CurrentTemperature temp={this.props.temp} />
+        <Header temp={this.props.temp} />
+
         <Footer />
       </div>
     );
