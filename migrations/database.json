@@ -1,0 +1,11 @@
+{
+	"dev": {
+		"host": "localhost",
+		"port": 33061,
+		"user": "raspberry",
+		"password" : "test123",
+		"database": "data_collector",
+		"driver": "mysql",
+		"multipleStatements": true
+	}
+}
