@@ -11,7 +11,7 @@ const finalCreateStore = compose(
   applyMiddleware(thunk),
   reduxReactRouter({ routes, createHistory }),
   devTools(),
-  applyMiddleware(createLogger())
+  applyMiddleware(createLogger({collapsed: true}))
 )(createStore);
 
 const store = finalCreateStore(rootReducer);
