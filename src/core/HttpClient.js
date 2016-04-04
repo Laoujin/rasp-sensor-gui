@@ -1,11 +1,7 @@
 import request from 'superagent';
-import { canUseDOM } from 'fbjs/lib/ExecutionEnvironment';
 
 function getUrl(path) {
-  return process.env.WEBSITE_HOSTNAME ?
-    `http://${process.env.WEBSITE_HOSTNAME}${path}` :
-    `http://localhost:49730${path}`;
-    // `http://127.0.0.1:${global.server.get('port')}${path}`;
+  return `http://localhost:8181/api${path}`;
 }
 
 const HttpClient = {
@@ -25,7 +21,6 @@ const HttpClient = {
         }
       });
   }),
-
 };
 
 export default HttpClient;

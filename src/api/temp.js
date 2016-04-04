@@ -1,6 +1,6 @@
 import resource from 'resource-router-middleware';
-import model from './tempModel';
-import db from '../db';
+import model from './tempModel.js';
+import db from '../db.js';
 
 export default resource({
   id : 'temp',
@@ -8,11 +8,11 @@ export default resource({
   create({ body }, res) {
     body = model.add(body);
     db.insert(body);
-    console.log('posted', body);
+    console.log('posted', body); // eslint-disable-line
     res.json(body);
   },
 
-  list: function(req, res) {
+  list(req, res) {
     db.get(function(result) {
       res.json(result);
     });

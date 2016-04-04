@@ -24,6 +24,7 @@
     "node-notifier": "^4.4.0",
     "normalize.css": "3.0.3",
     "react": "0.14.0",
+    "react-d3-basic": "^1.6.11",
     "react-dom": "0.14.0",
     "react-moment-proptypes": "^1.0.0",
     "react-redux": "^4.0.0",

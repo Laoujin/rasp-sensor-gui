@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import styles from './Header.css';
-import withStyles from '../../decorators/withStyles';
+import withStyles from '../../decorators/withStyles.js';
 import Navigation from '../Navigation';
 import CurrentTemperature from '../Temperature/CurrentTemp.js';
 

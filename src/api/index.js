@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import temp from './temp';
+import temp from './temp.js';
 
 export default function() {
   var api = Router();

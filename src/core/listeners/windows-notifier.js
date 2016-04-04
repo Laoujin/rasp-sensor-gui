@@ -1,4 +1,4 @@
-import eventEmitter from '../eventEmitter';
+import eventEmitter from '../eventEmitter.js';
 import notifier from 'node-notifier';
 
 export default function() {
@@ -11,10 +11,10 @@ export default function() {
   //  console.log('emitted' + data.temp);
   // });
 
-  eventEmitter.on('heater', function(data) {
-    notifier.notify({
-      title: 'Temp = ' + data.temp.temp,
-      message: 'Send heater ' + (data.heater ? 'ON' : 'OFF') + ' signal'
-    });
-  });
+  // eventEmitter.on('heater', function(data) {
+  //   notifier.notify({
+  //     title: 'Temp = ' + data.temp.temp,
+  //     message: 'Send heater ' + (data.heater ? 'ON' : 'OFF') + ' signal'
+  //   });
+  // });
 }

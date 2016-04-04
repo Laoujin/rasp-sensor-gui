@@ -1,4 +1,4 @@
-import eventEmitter from '../core/eventEmitter';
+import eventEmitter from '../core/eventEmitter.js';
 
 const conf = {
   tempTreshold: {

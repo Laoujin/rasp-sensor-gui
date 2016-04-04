@@ -3,8 +3,8 @@ import path from 'path';
 import http from 'http';
 import express from 'express';
 import bodyParser from 'body-parser';
-import api from './api';
-import { registerEvents } from './core/eventEmitter';
+import api from './api/index.js';
+import { registerEvents } from './core/eventEmitter.js';
 
 registerEvents();
 
@@ -18,8 +18,6 @@ app.use(bodyParser.json({
 app.set('port', (process.env.PORT || 8181));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/api', api());
-
 global.io = require('socket.io')(app.server);
 // io.on('connection', function(socket) {
 //   console.log('user connected');
@@ -28,6 +26,14 @@ global.io = require('socket.io')(app.server);
 //     //io.emit('chat message', msg);
 //   });
 // });
+
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
+
+app.use('/api', api());
 
 app.server.listen(app.get('port'), () => {
   /* eslint-disable no-console */
