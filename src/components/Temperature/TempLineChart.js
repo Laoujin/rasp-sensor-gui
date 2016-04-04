@@ -2,7 +2,6 @@ import React, { PropTypes, Component } from 'react';
 import http from '../../core/HttpClient.js';
 import _ from 'lodash';
 import moment from 'moment';
-moment.locale('nl');
 
 const LineChart = require('react-chartjs').Line;
 

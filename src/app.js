@@ -14,6 +14,9 @@ global.socket = io();
 // Make taps on links and buttons work fast on mobiles
 //FastClick.attach(document.body);
 
+import moment from 'moment';
+moment.locale('nl');
+
 const __DEVTOOLS__= false;
 if (__DEVTOOLS__) {
   const { DebugPanel, DevTools, LogMonitor } = require('redux-devtools/lib/react');
