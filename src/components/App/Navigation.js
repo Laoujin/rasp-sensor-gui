@@ -1,11 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import classNames from 'classnames';
-import styles from './Navigation.css';
-import withStyles from '../../decorators/withStyles.js';
 
-@withStyles(styles)
-class Navigation extends Component {
-
+export default class Navigation extends Component {
   static propTypes = {
     className: PropTypes.string,
   };
@@ -16,7 +12,4 @@ class Navigation extends Component {
       </div>
     );
   }
-
 }
-
-export default Navigation;

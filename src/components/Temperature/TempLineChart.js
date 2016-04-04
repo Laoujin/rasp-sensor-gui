@@ -19,6 +19,9 @@ export default class TempLineChart extends Component {
   }
 
   render() {
+    //measuredon=2016010620 & temperature
+
+
     return (
       <div>
         <pre>{JSON.stringify(this.state.data)}</pre>

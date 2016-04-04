@@ -1,165 +1,90 @@
 @import '../../../node_modules/normalize.css/normalize.css';
 @import '../variables.css';
 
-/*
- * Base styles
- * ========================================================================== */
+@import './BaseStyles.css';
 
-html {
-  color: #222;
-  font-weight: 100;
-  font-size: 1em; /* ~16px; */
-  font-family: var(--font-family-base);
-  line-height: 1.375; /* ~22px */
+:root {
+  --brand-color: #61dafb;
 }
 
-/*
- * Remove text-shadow in selection highlight:
- * https://twitter.com/miketaylr/status/12228805301
- *
- * These selection rule sets have to be separate.
- * Customize the background color to match your design.
- */
-
-::-moz-selection {
-  background: #b3d4fc;
-  text-shadow: none;
+.Navigation-link {
+  display: inline-block;
+  padding: 3px 8px;
+  text-decoration: none;
+  font-size: 1.125em; /* ~18px */
 }
 
-::selection {
-  background: #b3d4fc;
-  text-shadow: none;
+.Navigation-link,
+.Navigation-link:active,
+.Navigation-link:visited {
+  color: rgba(255, 255, 255, .6);
 }
 
-/*
- * A better looking default horizontal rule
- */
-
-hr {
-  display: block;
-  height: 1px;
-  border: 0;
-  border-top: 1px solid #ccc;
-  margin: 1em 0;
-  padding: 0;
+.Navigation-link:hover {
+  color: rgba(255, 255, 255, 1);
 }
 
-/*
- * Remove the gap between audio, canvas, iframes,
- * images, videos and the bottom of their containers:
- * https://github.com/h5bp/html5-boilerplate/issues/440
- */
-
-audio,
-canvas,
-iframe,
-img,
-svg,
-video {
-  vertical-align: middle;
+.Navigation-link--highlight {
+  margin-right: 8px;
+  margin-left: 8px;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, .15);
+  color: #fff;
 }
 
-/*
- * Remove default fieldset styles.
- */
+.Navigation-link--highlight:hover {
+  background: rgba(0, 0, 0, .3);
+}
 
-fieldset {
-  border: 0;
+.Navigation-spacer {
+  color: rgba(255, 255, 255, .3);
+}
+
+
+
+
+
+.Header {
+  background: #373277;
+  color: #fff;
+}
+
+.Header-container {
+  margin: 0 auto;
+  padding: 20px 0;
+  max-width: var(--max-content-width);
+}
+
+.Header-brand {
+  color: color(var(--brand-color) lightness(+10%));
+  text-decoration: none;
+  font-size: 1.75em; /* ~28px */
+}
+
+.Header-brandTxt {
+  margin-left: 10px;
+}
+
+.Header-nav {
+  float: right;
+  margin-top: 6px;
+}
+
+.Header-banner {
+  text-align: center;
+}
+
+.Header-bannerTitle {
   margin: 0;
+  padding: 10px;
+  font-weight: normal;
+  font-size: 4em;
+  line-height: 1em;
+}
+
+.Header-bannerDesc {
   padding: 0;
-}
-
-/*
- * Allow only vertical resizing of textareas.
- */
-
-textarea {
-  resize: vertical;
-}
-
-/*
- * Browser upgrade prompt
- * ========================================================================== */
-
-.browserupgrade {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
-}
-
-/*
- * Print styles
- * Inlined to avoid the additional HTTP request:
- * http://www.phpied.com/delay-loading-your-print-css/
- * ========================================================================== */
-
-@media print {
-  *,
-  *:before,
-  *:after {
-    background: transparent !important;
-    color: #000 !important; /* Black prints faster: http://www.sanbeiji.com/archives/953 */
-    box-shadow: none !important;
-    text-shadow: none !important;
-  }
-
-  a,
-  a:visited {
-    text-decoration: underline;
-  }
-
-  a[href]:after {
-    content: " (" attr(href) ")";
-  }
-
-  abbr[title]:after {
-    content: " (" attr(title) ")";
-  }
-
-  /*
-   * Don't show links that are fragment identifiers,
-   * or use the `javascript:` pseudo protocol
-   */
-
-  a[href^="#"]:after,
-  a[href^="javascript:"]:after {
-    content: "";
-  }
-
-  pre,
-  blockquote {
-    border: 1px solid #999;
-    page-break-inside: avoid;
-  }
-
-  /*
-   * Printing Tables:
-   * http://css-discuss.incutio.com/wiki/Printing_Tables
-   */
-
-  thead {
-    display: table-header-group;
-  }
-
-  tr,
-  img {
-    page-break-inside: avoid;
-  }
-
-  img {
-    max-width: 100% !important;
-  }
-
-  p,
-  h2,
-  h3 {
-    orphans: 3;
-    widows: 3;
-  }
-
-  h2,
-  h3 {
-    page-break-after: avoid;
-  }
+  color: rgba(255, 255, 255, .5);
+  font-size: 1.25em;
+  margin: 0;
 }

@@ -1,10 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import styles from './Header.css';
-import withStyles from '../../decorators/withStyles.js';
-import Navigation from '../Navigation';
+import Navigation from './Navigation.js';
 import CurrentTemperature from '../Temperature/CurrentTemp.js';
 
-@withStyles(styles)
 export default class Header extends Component {
   static propTypes = {
     temp: PropTypes.any.isRequired
