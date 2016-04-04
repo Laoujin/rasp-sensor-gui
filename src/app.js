@@ -5,10 +5,6 @@ import { Provider } from 'react-redux';
 import { ReduxRouter } from 'redux-router';
 import store from './core/store';
 
-const context = {
-  onSetTitle: value => document.title = value || 'Delicious Raspberry Pie'
-};
-
 global.socket = io();
 // global.socket.on('temp', function(msg){
 //   console.log('message received');

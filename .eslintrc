@@ -38,7 +38,8 @@
 	],
 
 	"globals": {
-		"React": true
+		"io": true,
+    "socket": true
 	},
 
 	"rules": {
