@@ -81,7 +81,7 @@
 		"no-lonely-if": 1,
 		"no-trailing-spaces": 1,
 
-		"react/display-name": 1,
+		"react/display-name": 0,
 		"react/jsx-boolean-value": 2,
 		"react/jsx-no-undef": 2,
 		"react/jsx-quotes": [1, "double"],

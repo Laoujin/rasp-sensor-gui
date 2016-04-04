@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "babel-core": "5.8.25",
+    "chart.js": "^1.1.0",
     "classnames": "2.1.5",
     "eventemitter3": "1.1.1",
     "express": "4.13.3",
@@ -24,7 +25,7 @@
     "node-notifier": "^4.4.0",
     "normalize.css": "3.0.3",
     "react": "0.14.0",
-    "react-d3-basic": "^1.6.11",
+    "react-chartjs": "^0.7.3",
     "react-dom": "0.14.0",
     "react-moment-proptypes": "^1.0.0",
     "react-redux": "^4.0.0",
