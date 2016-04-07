@@ -17,9 +17,10 @@ export default task('start', async () => {
   await require('./serve')();
 
   browserSync({
+    port: 3012,
     proxy: {
 
-      target: 'localhost:8181',
+      target: 'localhost:8182',
 
       middleware: [
         webpackDevMiddleware(bundler, {

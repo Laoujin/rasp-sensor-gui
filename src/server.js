@@ -15,7 +15,7 @@ app.use(bodyParser.json({
   limit: '100kb',
 }));
 
-app.set('port', (process.env.PORT || 8181));
+app.set('port', (process.env.PORT || 8182));
 app.use(express.static(path.join(__dirname, 'public')));
 
 global.io = require('socket.io')(app.server);
