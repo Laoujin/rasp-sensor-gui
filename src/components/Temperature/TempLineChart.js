@@ -10,16 +10,24 @@ const graphWidth = 1000;
 const longDateFormat = 'ddd D MMM Hu';
 const timeOnlyFormat = 'Hu';
 
-function weekLabels(data) {
+function twoDaysLabels(data, index) {
+  if (data[index].measuredon.isSame(data[index - 1].measuredon, 'd')) {
+    return data[index].measuredon.format(timeOnlyFormat);
+  } else {
+    return data[index].measuredon.format(longDateFormat);
+  }
+}
+
+function weekLabels(data, index) {
   const displayHours = [8, 20];
-  if (displayHours.indexOf(data.measuredon.hour()) !== -1) {
-    return data.measuredon.format(timeOnlyFormat);
+  if (displayHours.indexOf(data[index].measuredon.hour()) !== -1) {
+    return data[index].measuredon.format(longDateFormat);
   }
   return '';
 }
 
 const filters = [
-  {filterName: '48h', diff: 2, interval: 'days', label: x => x.measuredon.format(timeOnlyFormat)},
+  {filterName: '48h', diff: 2, interval: 'days', label: twoDaysLabels},
   {filterName: '7d', diff: 7, interval: 'days', label: weekLabels},
 ];
 
@@ -64,11 +72,7 @@ export default class TempLineChart extends Component {
       let data = _.sortBy(filtered, d => d.measuredon);
       data[0].displayLabel = data[0].measuredon.format(longDateFormat);
       for (let i = 1; i < data.length; i++) {
-        if (data[i].measuredon.isSame(data[i - 1].measuredon, 'd')) {
-          data[i].displayLabel = this.state.filter.label(data[i]);
-        } else {
-          data[i].displayLabel = data[i].measuredon.format(longDateFormat);
-        }
+        data[i].displayLabel = this.state.filter.label(data, i);
       }
 
       //console.log('data', data);
@@ -87,7 +91,7 @@ export default class TempLineChart extends Component {
       };
 
       const chartOptions = {
-        pointHitDetectionRadius: 7,
+        pointHitDetectionRadius: 1,
         onAnimationComplete: () => {
           //console.log('chart', this.refs.canvas.getChart());
           //var canvas = this.refs.canvas.getCanvas().getContext('2d');
@@ -101,10 +105,10 @@ export default class TempLineChart extends Component {
       <div style={{margin: 25, width: graphWidth}}>
         <div>
           <h2>Filter</h2>
-          {filters.map(filter => {
+          {filters.map((filter, index) => {
             const classNames = cn('btn btn-sm', 'btn-' + (filter !== this.state.filter ? 'default' : 'primary'));
             return (
-              <button type="button" onClick={this._setFilter.bind(this, filter)} className={classNames}>
+              <button key={index} type="button" onClick={this._setFilter.bind(this, filter)} className={classNames} style={{marginRight: 15}}>
                 {filter.filterName}
               </button>
             );
