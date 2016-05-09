@@ -2,11 +2,34 @@ import React, { PropTypes, Component } from 'react';
 import http from '../../core/HttpClient.js';
 import _ from 'lodash';
 import moment from 'moment';
+import cn from 'classnames';
 
 const LineChart = require('react-chartjs').Line;
 
-// const lightsOn = 20;
-// const lightsOff = 8;
+const graphWidth = 1000;
+const longDateFormat = 'ddd D MMM Hu';
+const timeOnlyFormat = 'Hu';
+
+function weekLabels(data) {
+  const displayHours = [8, 20];
+  if (displayHours.indexOf(data.measuredon.hour()) !== -1) {
+    return data.measuredon.format(timeOnlyFormat);
+  }
+  return '';
+}
+
+const filters = [
+  {filterName: '48h', diff: 2, interval: 'days', label: x => x.measuredon.format(timeOnlyFormat)},
+  {filterName: '7d', diff: 7, interval: 'days', label: weekLabels},
+];
+
+function getDefaultState(filter) {
+  return {
+    start: moment().subtract(filter.diff, filter.interval),
+    end: moment(),
+    filter: filter
+  };
+}
 
 export default class TempLineChart extends Component {
   static propTypes = {
@@ -15,24 +38,19 @@ export default class TempLineChart extends Component {
 
   constructor() {
     super();
-    this.state = {
-      data: [],
-      start: moment().subtract(2, 'days'),
-      end: moment()
-    };
+    this.state = Object.assign({data: []}, getDefaultState(filters[0]));
   }
 
   componentDidMount() {
+    const self = this;
     http.get('/temp')
-      .then(data => this.setState({data}));
+      .then(data => self.setState({data}));
   }
 
   render() {
     if (!this.state.data.length) {
       return <div>Loading...</div>;
     }
-
-    const graphWidth = 1000;
 
     const formattedData = this.state.data.map(d => ({
       temperature: Math.round(d.temperature * 10) / 10,
@@ -44,11 +62,10 @@ export default class TempLineChart extends Component {
     var chart;
     if (filtered.length) {
       let data = _.sortBy(filtered, d => d.measuredon);
-      const longDateFormat = 'ddd D MMM Hu';
       data[0].displayLabel = data[0].measuredon.format(longDateFormat);
       for (let i = 1; i < data.length; i++) {
         if (data[i].measuredon.isSame(data[i - 1].measuredon, 'd')) {
-          data[i].displayLabel = data[i].measuredon.format('Hu');
+          data[i].displayLabel = this.state.filter.label(data[i]);
         } else {
           data[i].displayLabel = data[i].measuredon.format(longDateFormat);
         }
@@ -58,7 +75,7 @@ export default class TempLineChart extends Component {
       const chartData = {
         labels: data.map(d => d.displayLabel),
         datasets: [{
-          label: 'My First dataset',
+          label: 'Temperaturez',
           fillColor: 'rgba(220,220,220,0.2)',
           strokeColor: 'rgba(220,220,220,1)',
           pointColor: 'rgba(220,220,220,1)',
@@ -82,6 +99,18 @@ export default class TempLineChart extends Component {
 
     return (
       <div style={{margin: 25, width: graphWidth}}>
+        <div>
+          <h2>Filter</h2>
+          {filters.map(filter => {
+            const classNames = cn('btn btn-sm', 'btn-' + (filter !== this.state.filter ? 'default' : 'primary'));
+            return (
+              <button type="button" onClick={this._setFilter.bind(this, filter)} className={classNames}>
+                {filter.filterName}
+              </button>
+            );
+          })}
+        </div>
+        <h2>Chart</h2>
         {chart}
 
         <div style={{width: 200, margin: 'auto', textAlign: 'center', color: 'firebrick'}}>
@@ -92,16 +121,19 @@ export default class TempLineChart extends Component {
     );
   }
 
+  _setFilter(filter) {
+    this.setState(getDefaultState(filter));
+  }
   _back() {
     this.setState({
-      start: moment(this.state.start).subtract(2, 'days'),
-      end: moment(this.state.end).subtract(2, 'days')
+      start: moment(this.state.start).add(-this.state.filter.diff, this.state.filter.interval),
+      end: moment(this.state.end).add(-this.state.filter.diff, this.state.filter.interval)
     });
   }
   _forward() {
     this.setState({
-      start: moment(this.state.start).add(2, 'days'),
-      end: moment(this.state.end).add(2, 'days')
+      start: moment(this.state.start).add(this.state.filter.diff, this.state.filter.interval),
+      end: moment(this.state.end).add(this.state.filter.diff, this.state.filter.interval)
     });
   }
 }
