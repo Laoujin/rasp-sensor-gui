@@ -5,6 +5,9 @@ import moment from 'moment';
 
 const LineChart = require('react-chartjs').Line;
 
+// const lightsOn = 20;
+// const lightsOff = 8;
+
 export default class TempLineChart extends Component {
   static propTypes = {
     temp: PropTypes.number,
@@ -68,8 +71,13 @@ export default class TempLineChart extends Component {
 
       const chartOptions = {
         pointHitDetectionRadius: 7,
+        onAnimationComplete: () => {
+          //console.log('chart', this.refs.canvas.getChart());
+          //var canvas = this.refs.canvas.getCanvas().getContext('2d');
+          //console.log('wheee', canvas);
+        }
       };
-      chart = <LineChart data={chartData} options={chartOptions} width={graphWidth} height="350"/>;
+      chart = <LineChart ref="canvas" data={chartData} options={chartOptions} width={graphWidth} height="350"/>;
     }
 
     return (
