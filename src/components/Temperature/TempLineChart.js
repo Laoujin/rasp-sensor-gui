@@ -9,8 +9,9 @@ const LineChart = require('react-chartjs').Line;
 const graphWidth = 1000;
 const longDateFormat = 'ddd D MMM Hu';
 const timeOnlyFormat = 'Hu';
+const displayHours = [8, 20];
 
-function twoDaysLabels(data, index) {
+function allHoursLabels(data, index) {
   if (data[index].measuredon.isSame(data[index - 1].measuredon, 'd')) {
     return data[index].measuredon.format(timeOnlyFormat);
   } else {
@@ -18,17 +19,33 @@ function twoDaysLabels(data, index) {
   }
 }
 
-function weekLabels(data, index) {
-  const displayHours = [8, 20];
+function importantHoursLabels(data, index) {
   if (displayHours.indexOf(data[index].measuredon.hour()) !== -1) {
     return data[index].measuredon.format(longDateFormat);
   }
   return '';
 }
 
+export function groupByHours(data) {
+  const beginHour = displayHours[0];
+  const endHour = displayHours[1];
+
+  var grouped = [];
+  grouped.push(Object.assign(data[0], {temperature: [data[0].temperature]}));
+  data.forEach((d, i) => {
+    grouped[i].temperature.push(d.temperature);
+    if (grouped[i].measuredon.isSame(d.measuredon, 'd')) {
+
+    }
+  });
+  grouped[0].temperature = grouped[0].temperature.reduce((a, b) => a + b) / grouped[0].temperature.length;
+  return grouped;
+}
+
 const filters = [
-  {filterName: '48h', diff: 2, interval: 'days', label: twoDaysLabels},
-  {filterName: '7d', diff: 7, interval: 'days', label: weekLabels},
+  {filterName: '48h', diff: 2, interval: 'days', label: allHoursLabels},
+  {filterName: '7d', diff: 7, interval: 'days', label: importantHoursLabels},
+  {filterName: 'All', diff: 150, interval: 'days', label: importantHoursLabels, group: groupByHours},
 ];
 
 function getDefaultState(filter) {
@@ -65,7 +82,10 @@ export default class TempLineChart extends Component {
       measuredon: moment(d.measuredon, 'YYYYMMDDHH'),
     }));
 
-    const filtered = formattedData.filter(x => x.measuredon.isBetween(this.state.start, this.state.end));
+    var filtered = formattedData.filter(x => x.measuredon.isBetween(this.state.start, this.state.end));
+    if (this.state.filter.group && filtered.length) {
+      filtered = this.state.filter.group(filtered);
+    }
 
     var chart;
     if (filtered.length) {

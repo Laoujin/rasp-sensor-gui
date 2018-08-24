@@ -55,6 +55,7 @@
     "gaze": "^0.5.2",
     "git-repository": "^0.1.1",
     "glob": "^5.0.15",
+    "jasmine": "^2.4.1",
     "jest-cli": "^0.5.10",
     "jscs": "^2.3.1",
     "lodash.merge": "^3.3.2",
@@ -88,7 +89,7 @@
   },
   "scripts": {
     "lint": "eslint src tools && jscs src tools",
-    "test": "eslint src && jest",
+    "test": "babel-node spec/run.js",
     "clean": "babel-node --eval \"require('./tools/clean')().catch(err => console.error(err.stack))\"",
     "copy": "babel-node --eval \"require('./tools/copy')().catch(err => console.error(err.stack))\"",
     "bundle": "babel-node --eval \"require('./tools/bundle')().catch(err => console.error(err.stack))\"",
